@@ -26,8 +26,15 @@ export default function PokemonCard({ name, id, types }) {
 
   return (
     <div className='pokemon-card'>
-      <h1>{name}</h1>
-      {types.map((type) => <p key={type} style={{color: colors[type]}}>{type}</p>)}
+      <div style={{background: colors[types[0]]}}>
+        <h1>#{id}</h1>
+      </div>
+      <div>
+        <h1>{name}</h1>
+        <div className='flex justify-center space-evenly'>
+          {types.map((type) => <p key={type} style={{color: colors[type]}}>{type}</p>)}
+        </div>
+      </div>
     </div>
   )
 }
