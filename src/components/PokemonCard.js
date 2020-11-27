@@ -23,11 +23,13 @@ const colors = {
 }
 
 export default function PokemonCard({ name, id, types }) {
+  const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
 
   return (
     <div className='pokemon-card'>
       <div style={{background: colors[types[0]]}}>
         <h1>#{id}</h1>
+        <img className='artwork' src={src} alt={`artwork of ${name}`} />
       </div>
       <div>
         <h1>{name}</h1>
