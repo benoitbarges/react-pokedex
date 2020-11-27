@@ -12,3 +12,7 @@
 .space-around {
   justify-content: space-around;
 }
+
+.pokemon-card {
+  width: 300px;
+}

@@ -11,7 +11,7 @@ function fetchPokemon(url) {
        {
         id: data.id,
         name: data.name,
-        types: data.types
+        types: data.types.map(type => type.type.name)
       }
     ))
 }
