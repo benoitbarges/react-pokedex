@@ -24,15 +24,30 @@ const colors = {
 
 export default function PokemonCard({ name, id, types }) {
   const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+  const formatId = (id) => {
+    if (id < 10) {
+      return `00${id}`
+    } else if (id < 100) {
+      return `0${id}`
+    }
+    return id
+  }
 
   return (
-    <div className='pokemon-card'>
-      <div style={{background: colors[types[0]]}}>
-        <h1>#{id}</h1>
+    <div
+      className='pokemon-card flex column'
+      style={{background: colors[types[0]]}}
+    >
+      <div>
+        <h1 className='header-lg pokemon-id'>
+          #{formatId(id)}
+        </h1>
         <img className='artwork' src={src} alt={`artwork of ${name}`} />
       </div>
-      <div>
-        <h1>{name}</h1>
+      <div className='bg-light bottom-rounded py-15'>
+        <h1 className='header-lg capitalize'>
+          {name}
+        </h1>
         <div className='flex justify-center space-evenly'>
           {types.map((type) => <p key={type} style={{color: colors[type]}}>{type}</p>)}
         </div>

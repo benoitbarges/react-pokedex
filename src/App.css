@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap')
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #F2F1F0;
+}
+
+#root {
+  background: #F2F1F0;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -14,8 +25,17 @@
 }
 
 .pokemon-card {
-  width: 300px;
+  width: 360px;
+  height: 430px;
   text-align: center;
+  margin: 10px 10px;
+  border-radius: 10px;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.column {
+  flex-direction: column;
 }
 
 .flex {
@@ -31,6 +51,41 @@
 }
 
 .artwork {
-  max-width: 100%;
+  max-width: 70%;
   height: auto;
+  position: relative;
 }
+
+.bg-light {
+  background: white;
+}
+
+.header-lg {
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: auto;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.bottom-rounded {
+  border-radius: 0px 0px 10px 10px
+}
+
+.py-15 {
+  padding: 15px 0px;
+}
+
+.pokemon-id {
+  opacity: 0.2;
+  position: absolute;
+  right: 18%;
+  top: 6%;
+  font-size: 75px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
