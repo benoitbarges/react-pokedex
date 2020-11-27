@@ -28,14 +28,27 @@ export default function PokemonList () {
 
   React.useEffect(() => {
     fetchPokemons()
-      .then(pokemons => dispatch({ type: 'success', pokemons }))
+      .then(pokemons => {
+        console.log(pokemons)
+        dispatch({ type: 'success', pokemons })
+      })
       .catch(error => dispatch({ type: 'error', error }))
   }, [])
 
+  if (state.loading) {
+    return <h1>Loading...</h1>
+  }
 
   return (
-    <div>
-      {state.pokemons.map((pokemon) => <PokemonCard name={pokemon.name} />)}
+    <div className='grid space-around'>
+      {state.pokemons.map((pokemon) => (
+        <PokemonCard
+          name={pokemon.name}
+          key={pokemon.id}
+          id={pokemon.id}
+          types={pokemon.types}
+        />
+      ))}
     </div>
   )
 }
