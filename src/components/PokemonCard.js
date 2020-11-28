@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import useHover from '../hooks/useHover'
 
 const colors = {
   "normal": "rgb(196, 196, 164)",
@@ -23,6 +24,8 @@ const colors = {
 }
 
 export default function PokemonCard({ name, id, types }) {
+  const [hovering, attr] = useHover()
+
   const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
   const formatId = (id) => {
     if (id < 10) {
@@ -35,8 +38,9 @@ export default function PokemonCard({ name, id, types }) {
 
   return (
     <div
-      className='pokemon-card flex column'
+      className={`pokemon-card flex column ${hovering && 'card-hover'}`}
       style={{background: colors[types[0]]}}
+      {...attr}
     >
       <div>
         <h1 className='header-lg pokemon-id'>
