@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import useHover from '../hooks/useHover'
+import { Link } from 'react-router-dom'
 
 const colors = {
   "normal": "rgb(196, 196, 164)",
@@ -37,7 +38,8 @@ export default function PokemonCard({ name, id, types }) {
   }
 
   return (
-    <div
+    <Link
+      to={`/pokemons?id=${id}`}
       className={`pokemon-card flex column ${hovering && 'card-hover'}`}
       style={{background: colors[types[0]]}}
       {...attr}
@@ -58,7 +60,7 @@ export default function PokemonCard({ name, id, types }) {
           ))}
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

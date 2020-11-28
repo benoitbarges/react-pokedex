@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import App from './App';
+import PokemonShow from './components/PokemonShow';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className='container'>
-      <App />
-    </div>
+    <Router>
+      <div className='container'>
+        <Switch>
+          <Route exact path='/' component={App} />
+          <Route path='/pokemons' component={PokemonShow} />
+        </Switch>
+      </div>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

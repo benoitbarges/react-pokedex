@@ -15,3 +15,17 @@ function fetchPokemon(url) {
       }
     ))
 }
+
+function fetchName(url) {
+  return fetch(url)
+  .then(reponse => reponse.json())
+  .then(data => {
+    return data.names
+  })
+}
+
+export function FetchWithId(id) {
+  return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    .then(response => response.json())
+    .then(data => data)
+}
