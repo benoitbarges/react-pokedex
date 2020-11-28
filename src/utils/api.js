@@ -4,7 +4,7 @@ export function fetchPokemons() {
     .then(data => Promise.all(data.results.map(result => fetchPokemon(result.url))))
 }
 
-function fetchPokemon(url) {
+export function fetchPokemon(url) {
   return fetch(url)
     .then(response => response.json())
     .then(async data => {

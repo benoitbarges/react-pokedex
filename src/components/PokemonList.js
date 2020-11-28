@@ -44,6 +44,7 @@ export default function PokemonList () {
         console.log(pokemon)
         return (
           <PokemonCard
+            pokemon={pokemon}
             name={pokemon.name}
             key={pokemon.id}
             id={pokemon.id}
@@ -54,14 +55,3 @@ export default function PokemonList () {
     </div>
   )
 }
-
-// {state.pokemons.map((pokemon) => (
-//   <PokemonCard
-//     name={pokemon.name}
-//     key={pokemon.id}
-//     id={pokemon.id}
-//     types={pokemon.types}
-//   />
-// ))}
-
-// {state.pokemons.map((pokemon) => console.log(pokemon))}
