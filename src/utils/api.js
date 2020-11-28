@@ -7,20 +7,41 @@ export function fetchPokemons() {
 function fetchPokemon(url) {
   return fetch(url)
     .then(response => response.json())
-    .then(data => (
-       {
+    .then(async data => {
+      const results = await fetchSpecie(data.species.url)
+      const stats = {}
+      data.stats.map(s => stats[s.stat.name] = s.base_stat)
+
+      return {
         id: data.id,
         name: data.name,
-        types: data.types.map(type => type.type.name)
+        types: data.types.map(type => type.type.name),
+        abilities: data.abilities.map(a => a.ability.name),
+        base_experience: data.base_experience,
+        height: data.height,
+        weight: data.weight,
+        ...results,
+        stats: stats
       }
-    ))
+    })
 }
 
-function fetchName(url) {
+function fetchSpecie(url) {
   return fetch(url)
   .then(reponse => reponse.json())
   .then(data => {
-    return data.names
+    return {
+      base_happiness: data.base_happiness,
+      capture_rate: data.capture_rate,
+      color: data.color.name,
+      description: data.flavor_text_entries.filter(text => text.language.name === "en")[0].flavor_text,
+      egg_groups: data.egg_groups.map(group => group.name),
+      genus: data.genera.find(genus => genus.language.name === "en").genus,
+      habitat: data.habitat.name,
+      legendary: data.is_legendary,
+      mythical: data.is_mythical,
+      shape: data.shape.name
+    }
   })
 }
 
