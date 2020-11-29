@@ -45,13 +45,13 @@ export default function PokemonShow({ location }) {
   return(
     <div className='pokemon-show flex bg-light'>
       <div className='show-artwork flex column left-rounded' style={{background: colors[pokemon.types[0]]}}>
-        <h1 className='header-lg capitalize'>
+        <h1 className='pokemon-name capitalize'>
           {pokemon.name}
         </h1>
-        <img className='artwork margin-auto' src={src} alt={`artwork of ${pokemon.name}`} />
+        <img className='artwork artwork-lg margin-auto' src={src} alt={`artwork of ${pokemon.name}`} />
       </div>
       <div className='show-infos'>
-        <SimpleTabs />
+        <SimpleTabs pokemon={state.pokemon}/>
       </div>
     </div>
   )
@@ -61,6 +61,7 @@ export default function PokemonShow({ location }) {
 const datas = {
   "id": 1,
   "name": "bulbasaur",
+  "capture_rate": 45,
   "types": [
     "grass",
     "poison"
@@ -73,14 +74,15 @@ const datas = {
   "height": 7,
   "weight": 69,
   "base_happiness": 70,
-  "capture_rate": 45,
+  "growth_rate": "medium",
   "color": "green",
   "description": "A strange seed was\nplanted on its\nback at birth.\fThe plant sprouts\nand grows with\nthis POKéMON.",
   "egg_groups": [
     "monster",
     "plant"
   ],
-  "genus": "Seed Pokémon",
+  "gender_rate": 1,
+  "species": "Seed Pokémon",
   "habitat": "grassland",
   "legendary": false,
   "mythical": false,

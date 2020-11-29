@@ -1,5 +1,5 @@
 export function fetchPokemons() {
-  return fetch('https://pokeapi.co/api/v2/pokemon?&limit=150')
+  return fetch('https://pokeapi.co/api/v2/pokemon?&limit=151')
     .then(reponse => reponse.json())
     .then(data => Promise.all(data.results.map(result => fetchPokemon(result.url))))
 }
@@ -8,8 +8,8 @@ export function fetchPokemon(url) {
   return fetch(url)
     .then(response => response.json())
     .then(async data => {
-      const results = await fetchSpecie(data.species.url)
-      const stats = {}
+      const results = await fetchSpecies(data.species.url)
+      const stats = []
       data.stats.map(s => stats[s.stat.name] = s.base_stat)
 
       return {
@@ -26,7 +26,7 @@ export function fetchPokemon(url) {
     })
 }
 
-function fetchSpecie(url) {
+function fetchSpecies(url) {
   return fetch(url)
   .then(reponse => reponse.json())
   .then(data => {
@@ -36,11 +36,14 @@ function fetchSpecie(url) {
       color: data.color.name,
       description: data.flavor_text_entries.filter(text => text.language.name === "en")[0].flavor_text,
       egg_groups: data.egg_groups.map(group => group.name),
-      genus: data.genera.find(genus => genus.language.name === "en").genus,
+      species: data.genera.find(genus => genus.language.name === "en").genus,
       habitat: data.habitat.name,
       legendary: data.is_legendary,
       mythical: data.is_mythical,
-      shape: data.shape.name
+      shape: data.shape.name,
+      gender_rate: data.gender_rate,
+      growth_rate: data.growth_rate.name
+
     }
   })
 }

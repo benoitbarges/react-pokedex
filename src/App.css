@@ -17,7 +17,7 @@ body {
   padding: 50px;
 }
 
-.grid {
+.home-grid {
   display: flex;
   flex-wrap: wrap;
 }
@@ -75,6 +75,10 @@ body {
   align-self: center;
 }
 
+.artwork-lg {
+  max-width: 80%;
+}
+
 .bg-light {
   background: white;
 }
@@ -83,6 +87,13 @@ body {
   font-size: 30px;
   font-weight: 400;
   letter-spacing: 1px;
+}
+
+.pokemon-name {
+  color: white;
+  font-weight: 600;
+  font-size: 2.5em;
+  margin-left: 30px;
 }
 
 .margin-auto {
@@ -125,6 +136,20 @@ body {
   min-width: 60px;
 }
 
+.tab {
+  background: white !important;
+  color: black !important;
+}
+
+.tab.Mui-selected {
+  font-weight: 600;
+}
+
+.tab-bar {
+  background: white !important;
+  box-shadow: none !important;
+}
+
 .ReactModal__Overlay {
   opacity: 0;
   transition: 0.2s ease-in-out;
@@ -144,11 +169,20 @@ body {
   transition: 0.5s ease-in-out !important;
 }
 
-.show-artwork {
-  flex: 0 0 40%;
+.show-infos {
+  padding: 25px;
+  flex: 1;
 }
 
-.show-infos {
-  flex: 0 0 60%;
+.grid {
+  display: grid;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2,minmax(0,1fr));
+}
+
+.gender-logo {
+  object-fit: contain;
 }
 

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import PokemonStats from './PokemonStats'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -20,7 +21,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          <Typography component={'div'}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleTabs() {
+export default function SimpleTabs({ pokemon }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -57,19 +58,84 @@ export default function SimpleTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className='tab-bar'>
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
-          <Tab label="Biography" {...a11yProps(0)} />
-          <Tab label="Stats" {...a11yProps(1)} />
-          <Tab label="Evolutions" {...a11yProps(2)} />
+          <Tab label="Biography" {...a11yProps(0)} className='tab' />
+          <Tab label="Stats" {...a11yProps(1)} className='tab' />
+          <Tab label="Evolutions" {...a11yProps(2)} className='tab' />
         </Tabs>
       </AppBar>
+
       <TabPanel value={value} index={0}>
-        Biography
+        <h2>Pokémon Data</h2>
+        <p>{pokemon.description}</p>
+
+        <ul>
+          <li className='grid grid-cols-2'>
+            <span>Species</span><span>{pokemon.species}</span>
+          </li>
+
+          <li className='grid grid-cols-2'>
+            <span>Height</span><span>{`${pokemon.height / 10}m`}</span>
+          </li>
+
+          <li className='grid grid-cols-2'>
+            <span>Weight</span><span>{`${pokemon.weight / 10}kg`}</span>
+          </li>
+
+          <li className='grid grid-cols-2'>
+            <span>Abilities</span>
+            <span>
+              <ol>
+                {pokemon.abilities.map(ability => <li className='capitalize' key={ability}>{ability}</li>)}
+              </ol>
+            </span>
+          </li>
+
+          <li className='grid grid-cols-2'>
+            <span>Gender</span>
+            {
+              pokemon.gender_rate === -1
+                ? <span>Genderless</span>
+                : <span className='flex'>
+                    <div className='flex'>
+                      <img className='gender-logo' src="male.png" alt="male" />
+                      <p>{100 - pokemon.gender_rate * 12.5}%</p>
+                    </div>
+                    <div className='flex'>
+                      <img className='gender-logo' src="female.png" alt="female" />
+                       <p>{pokemon.gender_rate * 12.5}%</p>
+                    </div>
+                  </span>
+            }
+          </li>
+        </ul>
+
+        <h2>Training</h2>
+        <ul>
+          <li className='grid grid-cols-2'>
+            <span>Base Exp</span><span>{pokemon.base_experience}</span>
+          </li>
+
+          <li className='grid grid-cols-2'>
+            <span>Base Happiness</span><span>{pokemon.base_happiness}</span>
+          </li>
+
+          <li className='grid grid-cols-2'>
+            <span>Capture Rate</span><span>{((pokemon.capture_rate / 255) * 100).toFixed(1)}%</span>
+          </li>
+
+          <li className='grid grid-cols-2'>
+            <span>Growth Rate</span><span>{pokemon.growth_rate}</span>
+          </li>
+        </ul>
       </TabPanel>
+
       <TabPanel value={value} index={1}>
-        Stats
+        <h2>Base Stats</h2>
+        <PokemonStats stats={pokemon.stats}/>
       </TabPanel>
+
       <TabPanel value={value} index={2}>
         Evolutions
       </TabPanel>

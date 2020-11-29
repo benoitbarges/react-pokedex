@@ -39,7 +39,7 @@ export default function PokemonList () {
   }
 
   return (
-    <div className='grid space-around'>
+    <div className='home-grid space-around'>
        {state.pokemons.map((pokemon) => {
         console.log(pokemon)
         return (
