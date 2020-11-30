@@ -67,24 +67,24 @@ export default function SimpleTabs({ pokemon }) {
       </AppBar>
 
       <TabPanel value={value} index={0}>
-        <h2>Pokémon Data</h2>
-        <p>{pokemon.description}</p>
+        <h4>Pokémon Data</h4>
+        <p className="text-gray">{pokemon.description}</p>
 
         <ul>
-          <li className='grid grid-cols-2'>
-            <span>Species</span><span>{pokemon.species}</span>
+          <li className='grid grid-cols-2 mb-3'>
+            <span className="text-gray font-medium">Species</span><span>{pokemon.species}</span>
           </li>
 
-          <li className='grid grid-cols-2'>
-            <span>Height</span><span>{`${pokemon.height / 10}m`}</span>
+          <li className='grid grid-cols-2 mb-3'>
+            <span className="text-gray font-medium">Height</span><span>{`${pokemon.height / 10}m`}</span>
           </li>
 
-          <li className='grid grid-cols-2'>
-            <span>Weight</span><span>{`${pokemon.weight / 10}kg`}</span>
+          <li className='grid grid-cols-2 mb-3'>
+            <span className="text-gray font-medium">Weight</span><span>{`${pokemon.weight / 10}kg`}</span>
           </li>
 
-          <li className='grid grid-cols-2'>
-            <span>Abilities</span>
+          <li className='grid grid-cols-2 mb-3'>
+            <span className="text-gray font-medium">Abilities</span>
             <span>
               <ol>
                 {pokemon.abilities.map(ability => <li className='capitalize' key={ability}>{ability}</li>)}
@@ -92,8 +92,8 @@ export default function SimpleTabs({ pokemon }) {
             </span>
           </li>
 
-          <li className='grid grid-cols-2'>
-            <span>Gender</span>
+          <li className='grid grid-cols-2 mb-3'>
+            <span className="text-gray font-medium">Gender</span>
             {
               pokemon.gender_rate === -1
                 ? <span>Genderless</span>
@@ -111,22 +111,22 @@ export default function SimpleTabs({ pokemon }) {
           </li>
         </ul>
 
-        <h2>Training</h2>
+        <h4>Training</h4>
         <ul>
-          <li className='grid grid-cols-2'>
-            <span>Base Exp</span><span>{pokemon.base_experience}</span>
+          <li className='grid grid-cols-2 mb-3'>
+            <span className="text-gray font-medium">Base Exp</span><span>{pokemon.base_experience}</span>
           </li>
 
-          <li className='grid grid-cols-2'>
-            <span>Base Happiness</span><span>{pokemon.base_happiness}</span>
+          <li className='grid grid-cols-2 mb-3'>
+            <span className="text-gray font-medium">Base Happiness</span><span>{pokemon.base_happiness}</span>
           </li>
 
-          <li className='grid grid-cols-2'>
-            <span>Capture Rate</span><span>{((pokemon.capture_rate / 255) * 100).toFixed(1)}%</span>
+          <li className='grid grid-cols-2 mb-3'>
+            <span className="text-gray font-medium">Capture Rate</span><span>{((pokemon.capture_rate / 255) * 100).toFixed(1)}%</span>
           </li>
 
-          <li className='grid grid-cols-2'>
-            <span>Growth Rate</span><span>{pokemon.growth_rate}</span>
+          <li className='grid grid-cols-2 mb-3'>
+            <span className="text-gray font-medium">Growth Rate</span><span>{pokemon.growth_rate}</span>
           </li>
         </ul>
       </TabPanel>

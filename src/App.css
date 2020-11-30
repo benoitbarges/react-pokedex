@@ -5,9 +5,13 @@ body {
   background: #F2F1F0;
 }
 
+html {
+  line-height: 1.5;
+}
+
 #root {
   background: #F2F1F0;
-  font-family: 'Montserrat', sans-serif;
+  /*font-family: 'Montserrat', sans-serif;*/
   min-height: 100vh
 }
 
@@ -42,8 +46,9 @@ body {
 
 .pokemon-show {
   border-radius: 10px;
-  width: 100%;
+  max-width: 1000px;
   min-height: 720px;
+  margin: auto;
 }
 
 .card-hover {
@@ -80,7 +85,7 @@ body {
 }
 
 .bg-light {
-  background: white;
+  background: white !important;
 }
 
 .header-lg {
@@ -184,5 +189,14 @@ body {
 
 .gender-logo {
   object-fit: contain;
+}
+
+.text-gray {
+  color: #6d6d6d;
+  opacity: 0.9;
+}
+
+.font-medium {
+  font-weight: 500;
 }
 

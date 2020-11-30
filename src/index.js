@@ -5,16 +5,30 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import PokemonShow from './components/PokemonShow';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Montserrat',
+      'sans-serif'
+    ].join(','),
+  }
+});
+
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <div className='container'>
-        <Switch>
-          <Route exact path='/' component={App} />
-          <Route path='/pokemons' component={PokemonShow} />
-        </Switch>
-      </div>
+      <ThemeProvider theme={theme}>
+        <div className='container'>
+          <Switch>
+            <Route exact path='/' component={App} />
+            <Route path='/pokemons' component={PokemonShow} />
+          </Switch>
+        </div>
+      </ThemeProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
