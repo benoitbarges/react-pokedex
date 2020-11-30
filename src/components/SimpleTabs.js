@@ -137,7 +137,7 @@ export default function SimpleTabs({ pokemon }) {
       </TabPanel>
 
       <TabPanel value={value} index={2}>
-        Evolutions
+       <h4 className='mb-4'>Evolutions</h4>
       </TabPanel>
     </div>
   );
