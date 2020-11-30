@@ -41,7 +41,6 @@ export default function PokemonList () {
   return (
     <div className='home-grid space-around'>
        {state.pokemons.map((pokemon) => {
-        console.log(pokemon)
         return (
           <PokemonCard
             pokemon={pokemon}

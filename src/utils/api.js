@@ -10,7 +10,7 @@ export function fetchPokemon(url) {
     .then(async data => {
       const results = await fetchSpecies(data.species.url)
       const stats = []
-      data.stats.map(s => stats[s.stat.name] = s.base_stat)
+      data.stats.forEach(s => stats.push({name: s.stat.name, base_stat: s.base_stat}))
 
       return {
         id: data.id,

@@ -67,8 +67,8 @@ export default function SimpleTabs({ pokemon }) {
       </AppBar>
 
       <TabPanel value={value} index={0}>
-        <h4>Pokémon Data</h4>
-        <p className="text-gray">{pokemon.description}</p>
+        <h4 className='mb-4'>Pokémon Data</h4>
+        <p className="text-gray mb-4">{pokemon.description}</p>
 
         <ul>
           <li className='grid grid-cols-2 mb-3'>
@@ -111,7 +111,7 @@ export default function SimpleTabs({ pokemon }) {
           </li>
         </ul>
 
-        <h4>Training</h4>
+        <h4 className='mb-4 mt-4'>Training</h4>
         <ul>
           <li className='grid grid-cols-2 mb-3'>
             <span className="text-gray font-medium">Base Exp</span><span>{pokemon.base_experience}</span>
@@ -132,7 +132,7 @@ export default function SimpleTabs({ pokemon }) {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <h2>Base Stats</h2>
+        <h4 className='mb-4'>Base Stats</h4>
         <PokemonStats stats={pokemon.stats}/>
       </TabPanel>
 

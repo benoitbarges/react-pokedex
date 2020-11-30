@@ -5,11 +5,11 @@ export default function PokemonStats({ stats }) {
   return (
     <div>
       <ul>
-        {stats.map((name, value) => (
+        {stats.map((stat) => (
           <Stat
-            key={name}
-            name={name}
-            value={value}
+            key={stat.name}
+            name={stat.name}
+            baseStat={stat.base_stat}
           />
         ))}
       </ul>
