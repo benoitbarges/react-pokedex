@@ -25,7 +25,7 @@ export default function PokemonCard({ name, id, types }) {
       {...attr}
     >
       <div>
-        <h1 className='header-lg margin-auto pokemon-id'>
+        <h1 className='margin-auto pokemon-id'>
           #{formatId(id)}
         </h1>
         <img className='artwork' src={src} alt={`artwork of ${name}`} />

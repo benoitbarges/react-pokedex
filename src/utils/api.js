@@ -1,5 +1,5 @@
-export function fetchPokemons() {
-  return fetch('https://pokeapi.co/api/v2/pokemon?&limit=151')
+export function fetchPokemons(url) {
+  return fetch(url)
     .then(reponse => reponse.json())
     .then(data => Promise.all(data.results.map(result => fetchPokemon(result.url))))
 }
@@ -30,7 +30,6 @@ function fetchSpecies(url) {
     .then(reponse => reponse.json())
     .then(async data => {
       const evolutionChain = await fetchEvolutionChain(data.evolution_chain.url)
-      console.log(evolutionChain)
       return {
         base_happiness: data.base_happiness,
         capture_rate: data.capture_rate,

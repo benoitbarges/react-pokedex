@@ -46,8 +46,6 @@ export default function PokemonShow({ location }) {
 
   const { pokemon, loading, error } = state
 
-  console.log(pokemon)
-
   if (loading) {
     return <h1>Loading...</h1>
   }

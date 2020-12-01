@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react'
 import PokemonList from './components/PokemonList'
+import Generation from './components/Generation'
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root')
@@ -17,8 +18,11 @@ const customStyles = {
   }
 };
 
+const generations = [1, 2, 3, 4, 5, 6, 7, 8]
+
 function App() {
   const [modalIsOpen,setIsOpen] = React.useState(false);
+  const [selectedGen, setSelectedGen] = React.useState(1)
 
   function openModal() {
     setIsOpen(true);
@@ -39,9 +43,15 @@ function App() {
           contentLabel="Example Modal"
         >
           <button onClick={closeModal}>close</button>
-          <div>I am a modal</div>
+          {generations.map((gen) => (
+            <Generation
+              key={gen}
+              gen={gen}
+              setSelectedGen={() => setSelectedGen(gen)}
+            />
+          ))}
         </Modal>
-      <PokemonList />
+      <PokemonList selectedGen={selectedGen}/>
     </div>
   );
 }

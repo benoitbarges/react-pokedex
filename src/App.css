@@ -50,6 +50,7 @@ ol {
   text-decoration: none;
   color: black;
   margin-bottom: 1.5em;
+  z-index: 10;
 }
 
 .pokemon-card:hover {
@@ -164,6 +165,7 @@ ol {
   font-size: 75px;
   font-weight: 600;
   letter-spacing: 0.2em;
+  z-index: -1;
 }
 
 .pokemon-type {
