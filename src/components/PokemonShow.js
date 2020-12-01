@@ -26,7 +26,6 @@ const pokemonReducer = (state, action) => {
 export default function PokemonShow({ location }) {
 
   const { id } = queryString.parse(location.search)
-  console.log(id)
 
   const [state, dispatch] = React.useReducer(
     pokemonReducer,
@@ -40,6 +39,8 @@ export default function PokemonShow({ location }) {
   }, [id])
 
   const { pokemon, loading, error } = state
+
+  console.log(pokemon)
 
   if (loading) {
     return <h1>Loading...</h1>

@@ -27,27 +27,56 @@ export function fetchPokemon(url) {
 
 function fetchSpecies(url) {
   return fetch(url)
-  .then(reponse => reponse.json())
-  .then(data => {
-    return {
-      base_happiness: data.base_happiness,
-      capture_rate: data.capture_rate,
-      color: data.color.name,
-      description: data.flavor_text_entries.filter(text => text.language.name === "en")[0].flavor_text,
-      egg_groups: data.egg_groups.map(group => group.name),
-      species: data.genera.find(genus => genus.language.name === "en").genus,
-      legendary: data.is_legendary,
-      mythical: data.is_mythical,
-      shape: data.shape.name,
-      gender_rate: data.gender_rate,
-      growth_rate: data.growth_rate.name,
-      jap_name: data.names.filter(name => name.language.name === "ja")[0].name
-    }
-  })
+    .then(reponse => reponse.json())
+    .then(async data => {
+      const evolutionChain = await fetchEvolutionChain(data.evolution_chain.url)
+      console.log(evolutionChain)
+      return {
+        base_happiness: data.base_happiness,
+        capture_rate: data.capture_rate,
+        color: data.color.name,
+        description: data.flavor_text_entries.filter(text => text.language.name === "en")[0].flavor_text,
+        egg_groups: data.egg_groups.map(group => group.name),
+        species: data.genera.find(genus => genus.language.name === "en").genus,
+        legendary: data.is_legendary,
+        mythical: data.is_mythical,
+        shape: data.shape.name,
+        gender_rate: data.gender_rate,
+        growth_rate: data.growth_rate.name,
+        jap_name: data.names.filter(name => name.language.name === "ja")[0].name,
+        ...evolutionChain
+      }
+    })
 }
 
-export function FetchWithId(id) {
-  return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+
+function fetchEvolutionChain(url) {
+  return fetch(url)
     .then(response => response.json())
-    .then(data => data)
+    .then(async data => {
+      const evolutions = []
+      evolutions.push(await fetchNameId(data.chain.species.url))
+      if (data.chain.evolves_to !== []) {
+        evolutions.push(await fetchNameId(data.chain.evolves_to[0].species.url))
+        if (data.chain.evolves_to[0].evolves_to !== []) {
+          data.chain.evolves_to[0].evolves_to.forEach(async evo => {
+            evolutions.push(await fetchNameId(evo.species.url))
+          })
+        }
+      }
+      return {
+        evolutions
+      }
+    })
+}
+
+function fetchNameId(url) {
+  return fetch(url)
+    .then(response => response.json())
+    .then((data) => {
+      return {
+        id: data.id,
+        name: data.name
+      }
+    })
 }
