@@ -100,11 +100,11 @@ export default function SimpleTabs({ pokemon }) {
                 : <span className='flex'>
                     <div className='flex'>
                       <img className='gender-logo' src="male.png" alt="male" />
-                      <p>{100 - pokemon.gender_rate * 12.5}%</p>
+                      <p className='margin-auto mx-2'>{100 - pokemon.gender_rate * 12.5}%</p>
                     </div>
                     <div className='flex'>
                       <img className='gender-logo' src="female.png" alt="female" />
-                       <p>{pokemon.gender_rate * 12.5}%</p>
+                       <p className='margin-auto mx-2'>{pokemon.gender_rate * 12.5}%</p>
                     </div>
                   </span>
             }

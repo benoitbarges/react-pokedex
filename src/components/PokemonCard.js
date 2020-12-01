@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import useHover from '../hooks/useHover'
 import { Link } from 'react-router-dom'
-import colors from '../utils/colors'
+import { colors } from '../utils/colors'
 
 export default function PokemonCard({ name, id, types }) {
   const [hovering, attr] = useHover()

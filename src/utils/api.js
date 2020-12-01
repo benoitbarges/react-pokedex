@@ -11,7 +11,6 @@ export function fetchPokemon(url) {
       const results = await fetchSpecies(data.species.url)
       const stats = []
       data.stats.forEach(s => stats.push({name: s.stat.name, base_stat: s.base_stat}))
-
       return {
         id: data.id,
         name: data.name,
@@ -37,13 +36,12 @@ function fetchSpecies(url) {
       description: data.flavor_text_entries.filter(text => text.language.name === "en")[0].flavor_text,
       egg_groups: data.egg_groups.map(group => group.name),
       species: data.genera.find(genus => genus.language.name === "en").genus,
-      habitat: data.habitat.name,
       legendary: data.is_legendary,
       mythical: data.is_mythical,
       shape: data.shape.name,
       gender_rate: data.gender_rate,
-      growth_rate: data.growth_rate.name
-
+      growth_rate: data.growth_rate.name,
+      jap_name: data.names.filter(name => name.language.name === "ja")[0].name
     }
   })
 }

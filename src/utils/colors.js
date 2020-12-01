@@ -19,4 +19,25 @@ const colors = {
   "fairy": "rgb(238, 153, 172)"
 }
 
-export default colors
+const lightColors = {
+  "normal": "rgb(205, 205, 185)",
+  "fighting": "rgb(186, 88, 82)",
+  "flying": "rgb(184, 165, 242)",
+  "poison": "rgb(167, 104, 167)",
+  "ground": "rgb(237, 208, 129)",
+  "rock": "rgb(197, 176, 89)",
+  "bug": "rgb(181, 197, 52)",
+  "ghost": "rgb(125, 107, 155)",
+  "steel": "rgb(193, 193, 209)",
+  "fire": "rgb(244, 147, 77)",
+  "water": "rgb(133, 165, 240)",
+  "grass": "rgb(153, 208, 125)",
+  "electric": "rgb(249, 223, 120)",
+  "psychic": "rgb(244, 125, 161)",
+  "ice": "rgb(179, 225, 225)",
+  "dragon": "rgb(134, 86, 250)",
+  "dark": "rgb(117, 100, 89)",
+  "fairy": "rgb(239, 167, 183)"
+}
+
+export { colors, lightColors }

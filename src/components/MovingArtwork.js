@@ -1,5 +1,6 @@
 import React from 'react'
 import { gsap } from 'gsap'
+import { lightColors } from '../utils/colors'
 
 const positionReducer = (state, action) => {
   if (action.type === 'setPosition') {
@@ -21,7 +22,7 @@ const positionReducer = (state, action) => {
   }
 }
 
-export default function MovingArtwork({ name, id}) {
+export default function MovingArtwork({ name, id, types}) {
   const [state, dispatch] = React.useReducer(
     positionReducer,
     {positionX: 0, positionY: 0}
@@ -75,12 +76,19 @@ export default function MovingArtwork({ name, id}) {
   }
 
   return (
-    <img
-      className='artwork artwork-lg margin-auto'
-      src={src} alt={`artwork of ${name}`}
-      onMouseMove={handleMouseMove}
-      onMouseOut={handleMouseOut}
-      ref={imageRef}
-    />
+    <React.Fragment>
+      <img
+        className='artwork artwork-lg margin-auto'
+        src={src} alt={`artwork of ${name}`}
+        onMouseMove={handleMouseMove}
+        onMouseOut={handleMouseOut}
+        ref={imageRef}
+      />
+      <div
+        className='circle'
+        style={{background: lightColors[types[0]]}}
+      >
+      </div>
+    </React.Fragment>
   )
 }

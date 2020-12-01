@@ -1,7 +1,7 @@
 import React from 'react'
 import queryString from 'query-string'
 import { fetchPokemon } from '../utils/api'
-import colors from '../utils/colors'
+import { colors } from '../utils/colors'
 import SimpleTabs from './SimpleTabs'
 import MovingArtwork from './MovingArtwork'
 
@@ -15,6 +15,7 @@ const pokemonReducer = (state, action) => {
   } else if (action.type === 'error') {
     return {
       ...state,
+      loading: false,
       error: action.error.message
     }
   } else {
@@ -25,6 +26,7 @@ const pokemonReducer = (state, action) => {
 export default function PokemonShow({ location }) {
 
   const { id } = queryString.parse(location.search)
+  console.log(id)
 
   const [state, dispatch] = React.useReducer(
     pokemonReducer,
@@ -37,10 +39,14 @@ export default function PokemonShow({ location }) {
       .catch(error => dispatch({type: 'error', error}))
   }, [id])
 
-  const { pokemon, loading } = state
+  const { pokemon, loading, error } = state
 
   if (loading) {
     return <h1>Loading...</h1>
+  }
+
+  if (state.error) {
+    return <div>{error}</div>
   }
 
   return(
@@ -49,9 +55,11 @@ export default function PokemonShow({ location }) {
         <h1 className='pokemon-name capitalize'>
           {pokemon.name}
         </h1>
+        <h1 className='jap-name bold'>{pokemon.jap_name}</h1>
         <MovingArtwork
           name={pokemon.name}
           id={pokemon.id}
+          types={pokemon.types}
         />
       </div>
       <div className='show-infos'>
