@@ -57,7 +57,7 @@ export default function MovingArtwork({ name, id, types}) {
     gsap.to(imageRef.current,  {
       x: x * 0.4,
       y: y * 0.4,
-      scale: 1.15,
+      scale: 1.10,
       ease: 'power2.out',
       duration: 0.2
     });
@@ -77,17 +77,17 @@ export default function MovingArtwork({ name, id, types}) {
 
   return (
     <React.Fragment>
-      <img
-        className='artwork artwork-lg'
-        src={src} alt={`artwork of ${name}`}
-        onMouseMove={handleMouseMove}
-        onMouseOut={handleMouseOut}
-        ref={imageRef}
-      />
       <div
-        className='circle'
+        className='circle-lg'
         style={{background: lightColors[types[0]]}}
       >
+        <img
+          className='artwork artwork-lg'
+          src={src} alt={`artwork of ${name}`}
+          onMouseMove={handleMouseMove}
+          onMouseOut={handleMouseOut}
+          ref={imageRef}
+        />
       </div>
     </React.Fragment>
   )

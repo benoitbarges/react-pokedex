@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PokemonStats from './PokemonStats'
+import Evolution from './Evolution'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -138,9 +139,16 @@ export default function SimpleTabs({ pokemon }) {
 
       <TabPanel value={value} index={2}>
         <h4 className='mb-4'>Evolutions</h4>
-        {pokemon.evolutions.map((evo) => (
-          <div>{evo.name}</div>
-        ))}
+        <div className='flex home-grid justify-center'>
+          {pokemon.evolutions.map((evo) => (
+            <Evolution
+              key={evo.id}
+              id={evo.id}
+              name={evo.name}
+              types={pokemon.types}
+            />
+          ))}
+        </div>
       </TabPanel>
     </div>
   );
