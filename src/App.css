@@ -259,9 +259,7 @@ ol {
 
 .jap-name {
   opacity: 0.7;
-  position: absolute;
-  top: 24%;
-  left: 19%;
+  margin-top: 90px;
   color: white;
   font-size: 3.5em;
 }

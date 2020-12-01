@@ -78,7 +78,7 @@ export default function MovingArtwork({ name, id, types}) {
   return (
     <React.Fragment>
       <img
-        className='artwork artwork-lg margin-auto'
+        className='artwork artwork-lg'
         src={src} alt={`artwork of ${name}`}
         onMouseMove={handleMouseMove}
         onMouseOut={handleMouseOut}

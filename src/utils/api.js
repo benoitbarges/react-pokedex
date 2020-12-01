@@ -56,9 +56,9 @@ function fetchEvolutionChain(url) {
     .then(async data => {
       const evolutions = []
       evolutions.push(await fetchNameId(data.chain.species.url))
-      if (data.chain.evolves_to !== []) {
+      if (data.chain.evolves_to.length !== 0) {
         evolutions.push(await fetchNameId(data.chain.evolves_to[0].species.url))
-        if (data.chain.evolves_to[0].evolves_to !== []) {
+        if (data.chain.evolves_to[0].evolves_to.length !== 0) {
           data.chain.evolves_to[0].evolves_to.forEach(async evo => {
             evolutions.push(await fetchNameId(evo.species.url))
           })

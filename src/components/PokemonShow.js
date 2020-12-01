@@ -56,7 +56,7 @@ export default function PokemonShow({ location }) {
         <h1 className='pokemon-name capitalize'>
           {pokemon.name}
         </h1>
-        <h1 className='jap-name bold'>{pokemon.jap_name}</h1>
+        <h1 className='jap-name bold mx-auto'>{pokemon.jap_name}</h1>
         <MovingArtwork
           name={pokemon.name}
           id={pokemon.id}
