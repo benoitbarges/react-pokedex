@@ -59,7 +59,7 @@ ol {
 
 .pokemon-show {
   border-radius: 10px;
-  max-width: 1000px;
+  max-width: 1100px;
   min-height: 720px;
   margin: auto;
 }
@@ -108,7 +108,15 @@ ol {
 }
 
 .artwork-sm {
-  max-width: 100%
+  max-width: 100%;
+  transition: 0.3s ease;
+  -webkit-backface-visibility: hidden;
+}
+
+.move-up {
+  transform: translateY(-10px);
+  transition: 0.3s ease;
+  -webkit-backface-visibility: hidden;
 }
 
 .bg-light {
@@ -235,10 +243,6 @@ ol {
   font-weight: 500;
 }
 
-.MuiBox-root-7 {
-  padding: 30px 0 !important;
-}
-
 .stat-bar-div {
   padding: 5%;
 }
@@ -267,6 +271,7 @@ ol {
 .circle-sm {
   width: 180px;
   border-radius: 50%;
+  margin: auto;
 }
 
 .jap-name {

@@ -139,7 +139,7 @@ export default function SimpleTabs({ pokemon }) {
 
       <TabPanel value={value} index={2}>
         <h4 className='mb-4'>Evolutions</h4>
-        <div className='flex home-grid justify-center'>
+        <div className='flex home-grid justify-center mt-5'>
           {pokemon.evolutions.map((evo) => (
             <Evolution
               key={evo.id}

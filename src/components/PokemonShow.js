@@ -18,6 +18,11 @@ const pokemonReducer = (state, action) => {
       loading: false,
       error: action.error.message
     }
+  } else if(action.type === 'loading') {
+    return {
+      ...state,
+      loading: true
+    }
   } else {
     throw new Error("This action type isn't supported.")
   }
@@ -33,6 +38,7 @@ export default function PokemonShow({ location }) {
   )
 
   React.useEffect(() => {
+    dispatch({type: 'loading'})
     fetchPokemon(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then(pokemon => dispatch({type: 'success', pokemon}))
       .catch(error => dispatch({type: 'error', error}))
