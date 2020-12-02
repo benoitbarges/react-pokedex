@@ -87,9 +87,12 @@ export default function SimpleTabs({ pokemon }) {
           <li className='grid grid-cols-2 mb-3'>
             <span className="text-gray font-medium">Abilities</span>
             <span>
-              <ol>
-                {pokemon.abilities.map(ability => <li className='capitalize' key={ability}>{ability}</li>)}
-              </ol>
+              {pokemon.abilities.length === 0
+                ? <p>unknown</p>
+                : <ol>
+                    {pokemon.abilities.map(ability => <li className='capitalize' key={ability}>{ability}</li>)}
+                  </ol>
+              }
             </span>
           </li>
 

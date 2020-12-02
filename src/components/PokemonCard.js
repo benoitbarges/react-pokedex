@@ -34,7 +34,7 @@ export default function PokemonCard({ name, id, types }) {
         <h1 className='header-lg capitalize margin-auto'>
           {name}
         </h1>
-        <div className='flex justify-center space-evenly'>
+        <div className='flex justify-center space-evenly mt-3'>
           {types.map((type) => (
             <p className='pokemon-type'key={type} style={{background: colors[type]}}>{type}</p>
           ))}

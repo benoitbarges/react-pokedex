@@ -16,7 +16,7 @@ export function fetchPokemon(url) {
         name: data.name,
         types: data.types.map(type => type.type.name),
         abilities: data.abilities.map(a => a.ability.name),
-        base_experience: data.base_experience,
+        base_experience: data.base_experience ? data.base_experience : 'unknown',
         height: data.height,
         weight: data.weight,
         ...results,
@@ -30,19 +30,24 @@ function fetchSpecies(url) {
     .then(reponse => reponse.json())
     .then(async data => {
       const evolutionChain = await fetchEvolutionChain(data.evolution_chain.url)
+      const japName = data.names.filter(name => name.language.name === "ja")
+      if (!data.shape) {
+        console.log(data.id)
+      }
+
       return {
-        base_happiness: data.base_happiness,
+        base_happiness: data.base_happiness ? data.base_happiness : 'unknown',
         capture_rate: data.capture_rate,
-        color: data.color.name,
+        color: data.color ? data.color.name: 'no color',
         description: data.flavor_text_entries.filter(text => text.language.name === "en")[0].flavor_text,
         egg_groups: data.egg_groups.map(group => group.name),
         species: data.genera.find(genus => genus.language.name === "en").genus,
         legendary: data.is_legendary,
         mythical: data.is_mythical,
-        shape: data.shape.name,
+        shape: data.shape ? data.shape.name : 'unknown',
         gender_rate: data.gender_rate,
-        growth_rate: data.growth_rate.name,
-        jap_name: data.names.filter(name => name.language.name === "ja")[0].name,
+        growth_rate: data.growth_rate ? data.growth_rate.name : 'unknown',
+        jap_name: japName.length === 0 ? 'ポケットモン' : japName[0].name,
         ...evolutionChain
       }
     })

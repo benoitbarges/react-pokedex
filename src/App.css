@@ -97,6 +97,16 @@ ol {
   justify-content: space-evenly;
 }
 
+.center-text {
+  text-align: center;
+}
+
+.error {
+  color: #ff1616;
+  font-size: 20px;
+  margin: 50px 0;
+}
+
 .artwork {
   max-width: 70%;
   height: auto;
@@ -204,6 +214,7 @@ ol {
 .ReactModal__Overlay--after-open {
   opacity: 1;
   transition: 0.2s ease-in-out;
+  z-index: 15;
 }
 
 .ReactModal__Overlay--before-close {

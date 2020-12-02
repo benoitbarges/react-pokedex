@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 export default function Generation({ gen, setSelectedGen }) {
   return (
-    <div onClick={setSelectedGen}>
+    <button onClick={setSelectedGen}>
       {gen}
-    </div>
+    </button>
   )
 }
 

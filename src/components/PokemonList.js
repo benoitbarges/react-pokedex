@@ -16,20 +16,14 @@ const urls = {
 const pokemonsReducer = (state, action) => {
   if (action.type === 'success') {
     return {
-      pokemons: action.pokemons,
-      loading: false,
+      ...state,
+      [action.selectedGen]: action.pokemons,
       error: null
     }
   } else if (action.type === 'error') {
     return {
       ...state,
-      loading: false,
       error: action.error.message
-    }
-  } else if(action.type === 'loading') {
-    return {
-      ...state,
-      loading: true
     }
   } else {
     throw new Error("That action type isn't supported.")
@@ -39,35 +33,47 @@ const pokemonsReducer = (state, action) => {
 export default function PokemonList ({ selectedGen }) {
   const [state, dispatch] = React.useReducer(
     pokemonsReducer,
-    {error: null, pokemons: [], loading: true}
+    {error: null}
   )
 
-  React.useEffect(() => {
-    dispatch({type: 'loading'})
-    fetchPokemons(urls[selectedGen])
-      .then(pokemons => {
-        dispatch({ type: 'success', pokemons })
-      })
-      .catch(error => dispatch({ type: 'error', error }))
-  }, [selectedGen])
+  const fetchedGens = React.useRef([])
 
-  if (state.loading) {
-    return <h1>Loading...</h1>
-  }
+  React.useEffect(() => {
+    if (!fetchedGens.current.includes(selectedGen)) {
+      fetchedGens.current.push(selectedGen)
+
+      fetchPokemons(urls[selectedGen])
+        .then(pokemons => {
+          dispatch({ type: 'success', pokemons, selectedGen })
+        })
+        .catch(error => dispatch({ type: 'error', error }))
+    }
+  }, [selectedGen, fetchedGens])
+
+
+  const isLoading = () => !state[selectedGen] && state.error === null
 
   return (
-    <div className='home-grid space-around'>
-       {state.pokemons.map((pokemon) => {
-        return (
-          <PokemonCard
-            pokemon={pokemon}
-            name={pokemon.name}
-            key={pokemon.id}
-            id={pokemon.id}
-            types={pokemon.types}
-          />
-        )
-       })}
-    </div>
+    <React.Fragment>
+      {isLoading() && <h1>Loading...</h1>}
+
+      {state.error && <p className='center-text error'>{state.error}</p>}
+
+      {state[selectedGen] && (
+        <div className='home-grid space-around'>
+           {state[selectedGen].map((pokemon) => {
+            return (
+              <PokemonCard
+                pokemon={pokemon}
+                name={pokemon.name}
+                key={pokemon.id}
+                id={pokemon.id}
+                types={pokemon.types}
+              />
+            )
+           })}
+        </div>
+      )}
+    </React.Fragment>
   )
 }
