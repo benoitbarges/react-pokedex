@@ -124,6 +124,39 @@ ol {
   -webkit-backface-visibility: hidden;
 }
 
+.artwork-mini {
+  max-width: 33%;
+}
+
+.gen-btn {
+  width: 180px;
+  height: 60px;
+  padding: 16px;
+  border: none;
+  background: white;
+  border-radius: 10px;
+}
+
+.gen-btn-lg {
+  margin: 10px;
+  width: 180px;
+  height: 112px;
+  padding: 10px;
+  border: none;
+  background: #dedede;
+  border-radius: 10px;
+}
+
+.gen-btn-lg:hover {
+  background: #ea5d60;
+  color: white;
+  transition: ease-in-out 0.2s;
+}
+
+.gen-btn:focus {
+  outline: none;
+}
+
 .move-up {
   transform: translateY(-10px);
   transition: 0.3s ease;
@@ -215,6 +248,7 @@ ol {
   opacity: 1;
   transition: 0.2s ease-in-out;
   z-index: 15;
+  background-color: rgba(0, 0, 0, 0.55) !important;
 }
 
 .ReactModal__Overlay--before-close {
@@ -222,7 +256,7 @@ ol {
 }
 
 .ReactModal__Content--after-open {
-  top: 30% !important;
+  top: 40% !important;
   transition: 0.5s ease-in-out !important;
 }
 

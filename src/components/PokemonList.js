@@ -10,7 +10,7 @@ const urls = {
   5: 'https://pokeapi.co/api/v2/pokemon?offset=493&limit=156',
   6: 'https://pokeapi.co/api/v2/pokemon?offset=649&limit=72',
   7: 'https://pokeapi.co/api/v2/pokemon?offset=721&limit=88',
-  8: 'https://pokeapi.co/api/v2/pokemon?offset=809&limit=89'
+  8: 'https://pokeapi.co/api/v2/pokemon?offset=809&limit=84'
 }
 
 const pokemonsReducer = (state, action) => {
