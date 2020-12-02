@@ -4,6 +4,7 @@ import PokemonList from './components/PokemonList'
 import Generation from './components/Generation'
 import Modal from 'react-modal';
 import startersArtworks from './utils/startersArtworks'
+import useHover from './hooks/useHover'
 
 Modal.setAppElement('#root')
 
@@ -26,6 +27,7 @@ const generations = [1, 2, 3, 4, 5, 6, 7, 8]
 function App() {
   const [modalIsOpen,setIsOpen] = React.useState(false);
   const [selectedGen, setSelectedGen] = React.useState(1)
+  const [hovering, attr] = useHover()
 
   function openModal() {
     setIsOpen(true);
@@ -37,12 +39,16 @@ function App() {
 
   return (
     <div className="App">
-      <button
-        onClick={openModal}
-        className="flex justify-center align-center gen-btn"
-      >
-       {startersArtworks[selectedGen].map(src => <img key={src} src={src} alt="starter artwork" className='artwork-mini'/>)}
-      </button>
+      <div className='flex mb-3'>
+        <h1 className='title bold'>React Pokédex</h1>
+        <button
+          onClick={openModal}
+          className={`flex justify-center align-center gen-btn ${hovering && 'card-hover'}`}
+          {...attr}
+        >
+         {startersArtworks[selectedGen].map(src => <img key={src} src={src} alt="starter artwork" className='artwork-mini'/>)}
+        </button>
+      </div>
 
         <Modal
           isOpen={modalIsOpen}

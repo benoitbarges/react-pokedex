@@ -70,6 +70,7 @@ export default function PokemonList ({ selectedGen }) {
                 key={pokemon.id}
                 id={pokemon.id}
                 types={pokemon.types}
+                gen={selectedGen}
               />
             )
            })}

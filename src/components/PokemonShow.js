@@ -54,7 +54,6 @@ export default function PokemonShow({ location }) {
   if (state.error) {
     return <div>{error}</div>
   }
-  console.log(pokemon)
 
   return(
     <div className='pokemon-show flex bg-light'>
