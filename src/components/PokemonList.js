@@ -1,6 +1,7 @@
 import React from 'react'
 import { fetchPokemons } from '../utils/api'
 import PokemonCard from './PokemonCard'
+import Loading from './Loading'
 
 const urls = {
   1: 'https://pokeapi.co/api/v2/pokemon?&limit=151',
@@ -55,7 +56,7 @@ export default function PokemonList ({ selectedGen }) {
 
   return (
     <React.Fragment>
-      {isLoading() && <h1>Loading...</h1>}
+      {isLoading() && <Loading />}
 
       {state.error && <p className='center-text error'>{state.error}</p>}
 

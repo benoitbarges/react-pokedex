@@ -4,6 +4,7 @@ import { fetchPokemon } from '../utils/api'
 import { colors } from '../utils/colors'
 import SimpleTabs from './SimpleTabs'
 import MovingArtwork from './MovingArtwork'
+import Loading from './Loading'
 
 const pokemonReducer = (state, action) => {
   if (action.type === 'success') {
@@ -47,7 +48,7 @@ export default function PokemonShow({ location }) {
   const { pokemon, loading, error } = state
 
   if (loading) {
-    return <h1>Loading...</h1>
+    return <Loading />
   }
 
   if (state.error) {
