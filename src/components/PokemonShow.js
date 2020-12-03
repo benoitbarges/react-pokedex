@@ -80,7 +80,7 @@ export default function PokemonShow({ location }) {
         />
       </div>
       <div className='show-infos'>
-        <SimpleTabs pokemon={state.pokemon}/>
+        <SimpleTabs pokemon={state.pokemon} gen={parseInt(gen, 10)}/>
       </div>
     </div>
   )

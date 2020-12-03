@@ -347,3 +347,8 @@ ol {
 .MuiSvgIcon-root {
   font-size: 2.5rem !important;
 }
+
+.moving-name {
+  font-size: 2em;
+  margin-top: 15%;
+}
