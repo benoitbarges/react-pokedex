@@ -24,9 +24,12 @@ const customStyles = {
 
 const generations = [1, 2, 3, 4, 5, 6, 7, 8]
 
-function App() {
+function App({ location }) {
   const [modalIsOpen,setIsOpen] = React.useState(false);
-  const [selectedGen, setSelectedGen] = React.useState(1)
+  const [selectedGen, setSelectedGen] = React.useState(
+    location.state ? location.state.selectedGen : 1
+  )
+
   const [hovering, attr] = useHover()
 
   function openModal() {

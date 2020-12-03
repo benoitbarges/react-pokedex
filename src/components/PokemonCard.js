@@ -4,7 +4,7 @@ import useHover from '../hooks/useHover'
 import { Link } from 'react-router-dom'
 import { colors } from '../utils/colors'
 
-export default function PokemonCard({ name, id, types }) {
+export default function PokemonCard({ name, id, types, gen }) {
   const [hovering, attr] = useHover()
 
   const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
@@ -19,7 +19,7 @@ export default function PokemonCard({ name, id, types }) {
 
   return (
     <Link
-      to={`/pokemons?id=${id}`}
+      to={`/pokemons?id=${id}&gen=${gen}`}
       className={`pokemon-card flex column ${hovering && 'card-hover'}`}
       style={{background: colors[types[0]]}}
       {...attr}
