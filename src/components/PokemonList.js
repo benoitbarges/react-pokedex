@@ -2,6 +2,7 @@ import React from 'react'
 import { fetchPokemons } from '../utils/api'
 import PokemonCard from './PokemonCard'
 import Loading from './Loading'
+import PropTypes from 'prop-types'
 
 const urls = {
   1: 'https://pokeapi.co/api/v2/pokemon?&limit=151',
@@ -78,4 +79,8 @@ export default function PokemonList ({ selectedGen }) {
       )}
     </React.Fragment>
   )
+}
+
+PokemonList.propTypes = {
+  selectedGen: PropTypes.number.isRequired
 }

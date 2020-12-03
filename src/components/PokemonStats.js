@@ -1,5 +1,6 @@
 import React from 'react'
 import Stat from './Stat'
+import PropTypes from 'prop-types'
 
 export default function PokemonStats({ stats }) {
   const total = () => {
@@ -38,4 +39,8 @@ export default function PokemonStats({ stats }) {
       </div>
     </div>
   )
+}
+
+PokemonStats.propTypes = {
+  stats: PropTypes.arrayOf(PropTypes.object).isRequired
 }

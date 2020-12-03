@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PokemonStats from './PokemonStats'
 import Evolution from './Evolution'
+import SplitText from 'react-pose-text'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -53,9 +54,13 @@ export default function SimpleTabs({ pokemon }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
+  const [pokemonName, setPokemonName] = React.useState('')
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  console.log(pokemon)
 
   return (
     <div className={classes.root}>
@@ -149,10 +154,16 @@ export default function SimpleTabs({ pokemon }) {
               id={evo.id}
               name={evo.name}
               types={pokemon.types}
+              setPokemonName={() => setPokemonName(evo.name)}
             />
           ))}
         </div>
+        <SplitText>{pokemonName}</SplitText>
       </TabPanel>
     </div>
   );
+}
+
+SimpleTabs.propTypes = {
+  pokemon: PropTypes.object.isRequired
 }

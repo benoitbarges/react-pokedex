@@ -48,4 +48,5 @@ PokemonCard.propTypes = {
   name: PropTypes.string.isRequired,
   types: PropTypes.array.isRequired,
   id: PropTypes.number.isRequired,
+  gen: PropTypes.number.isRequired
 }

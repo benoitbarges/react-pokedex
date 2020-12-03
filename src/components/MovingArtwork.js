@@ -1,6 +1,7 @@
 import React from 'react'
 import { gsap } from 'gsap'
 import { lightColors } from '../utils/colors'
+import PropTypes from 'prop-types'
 
 const positionReducer = (state, action) => {
   if (action.type === 'setPosition') {
@@ -91,4 +92,10 @@ export default function MovingArtwork({ name, id, types}) {
       </div>
     </React.Fragment>
   )
+}
+
+MovingArtwork.propTypes = {
+  name: PropTypes.string.isRequired,
+  types: PropTypes.array.isRequired,
+  id: PropTypes.number.isRequired,
 }

@@ -6,6 +6,7 @@ import SimpleTabs from './SimpleTabs'
 import MovingArtwork from './MovingArtwork'
 import Loading from './Loading'
 import { Link } from 'react-router-dom'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const pokemonReducer = (state, action) => {
   if (action.type === 'success') {
@@ -56,21 +57,19 @@ export default function PokemonShow({ location }) {
     return <div>{error}</div>
   }
 
-  return(
+  return (
     <div className='pokemon-show flex bg-light'>
       <div className='show-artwork flex column left-rounded' style={{background: colors[pokemon.types[0]]}}>
-
-        <Link
-          to={{
-            pathname: "/",
-            state: { selectedGen: gen }
-          }}
-        >
-          go back
-        </Link>
-
-
         <h1 className='pokemon-name capitalize'>
+          <Link
+            to={{
+              pathname: "/",
+              state: { selectedGen: gen }
+            }}
+            className='go-back bold'
+          >
+            <ArrowBackIcon />
+          </Link>
           {pokemon.name}
         </h1>
         <h1 className='jap-name bold mx-auto'>{pokemon.jap_name}</h1>

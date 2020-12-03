@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function Stat({ name, baseStat, maxStat }) {
   return (
@@ -11,4 +12,10 @@ export default function Stat({ name, baseStat, maxStat }) {
       <span className='font-medium'>{maxStat.toFixed()}</span>
     </li>
   )
+}
+
+Stat.propTypes = {
+  name: PropTypes.string.isRequired,
+  baseStat: PropTypes.number.isRequired,
+  maxStat: PropTypes.number.isRequired
 }
