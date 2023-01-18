@@ -37,6 +37,9 @@ ol {
 .space-around {
   justify-content: space-around;
 }
+.space-between {
+  justify-content: space-between;
+}
 
 .pokemon-card {
   width: 360px;
@@ -102,6 +105,10 @@ ol {
   text-align: center;
 }
 
+.gap-2 {
+  gap: 2rem;
+}
+
 .error {
   color: #ff1616;
   font-size: 20px;
@@ -129,7 +136,28 @@ ol {
   max-width: 33%;
 }
 
-.gen-btn {
+form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: auto;
+}
+
+form label,
+form input,
+form button {
+  margin: unset;
+  width: 100% !important;
+}
+
+select {
+  cursor: pointer;
+}
+
+input,
+.btn {
   width: 180px;
   height: 60px;
   padding: 16px;
@@ -140,7 +168,7 @@ ol {
   box-shadow: 0px 3px 10px 3px rgba(0,0,0,0.2);
 }
 
-.gen-btn-lg {
+.btn-lg {
   margin: 10px;
   width: 180px;
   height: 112px;
@@ -150,14 +178,30 @@ ol {
   border-radius: 10px;
 }
 
-.gen-btn-lg:hover {
+.btn-lg:hover,
+.submit:hover {
   background: #ea5d60;
   color: white;
   transition: ease-in-out 0.2s;
 }
 
-.gen-btn:focus {
+.btn:focus {
   outline: none;
+}
+
+.share-btn:focus {
+  animation: changeColor 0.5s forwards;
+}
+
+@keyframes changeColor {
+  from {
+    background: white;
+    color: black;
+  }
+  to {
+    background: rgb(120, 200, 80);
+    color: white;
+  }
 }
 
 .move-up {
@@ -258,7 +302,7 @@ ol {
 }
 
 .ReactModal__Content--after-open {
-  top: 40% !important;
+  top: 50% !important;
   transition: 0.5s ease-in-out !important;
 }
 
@@ -328,11 +372,6 @@ ol {
   margin-top: 90px;
   color: white;
   font-size: 3.5em;
-}
-
-.title {
-  margin-right: 15%;
-  margin-left: 2%;
 }
 
 .go-back {

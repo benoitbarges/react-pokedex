@@ -15,7 +15,7 @@ export default function Evolution({ name, id, types, setPokemonName, unsetPokemo
 
   return (
     <Link
-      to={`/pokemons?id=${id}&gen=${gen}`}
+      to={`/pokemons/${id}`}
       className='circle-sm'
       style={{background: lightColors[types[0]]}}
       onMouseOver={handleOver}

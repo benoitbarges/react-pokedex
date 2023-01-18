@@ -4,10 +4,10 @@ import useHover from '../hooks/useHover'
 import { Link } from 'react-router-dom'
 import { colors } from '../utils/colors'
 
-export default function PokemonCard({ name, id, types, gen }) {
+export default function PokemonCard({ pokemon, asLink }) {
   const [hovering, attr] = useHover()
+  const { id, name, image_url: imageUrl, types } = pokemon
 
-  const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
   const formatId = (id) => {
     if (id < 10) {
       return `00${id}`
@@ -17,18 +17,13 @@ export default function PokemonCard({ name, id, types, gen }) {
     return id
   }
 
-  return (
-    <Link
-      to={`/pokemons?id=${id}&gen=${gen}`}
-      className={`pokemon-card flex column ${hovering && 'card-hover'}`}
-      style={{background: colors[types[0]]}}
-      {...attr}
-    >
+  const renderContent = () => (
+    <React.Fragment>
       <div>
         <h1 className='margin-auto pokemon-id'>
           #{formatId(id)}
         </h1>
-        <img className='artwork' src={src} alt={`artwork of ${name}`} />
+        <img className='artwork' src={imageUrl} alt={`artwork of ${name}`} />
       </div>
       <div className='bg-light bottom-rounded py-15'>
         <h1 className='header-lg capitalize margin-auto'>
@@ -40,13 +35,34 @@ export default function PokemonCard({ name, id, types, gen }) {
           ))}
         </div>
       </div>
-    </Link>
+    </React.Fragment>
   )
+
+  if (asLink) {
+    return (
+      <Link
+        to={`/pokemons/${id}`}
+        className={`pokemon-card flex column ${hovering && 'card-hover'}`}
+        style={{background: colors[types[0]]}}
+        {...attr}
+      >
+        {renderContent()}
+      </Link>
+    )
+  } else {
+    return (
+      <div
+        className='pokemon-card flex column'
+        style={{background: colors[types[0]]}}
+      >
+        {renderContent()}
+      </div>
+    )
+  }
+
 }
 
-PokemonCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  types: PropTypes.array.isRequired,
-  id: PropTypes.number.isRequired,
-  gen: PropTypes.number.isRequired
+PokemonCard.propTypes = {
+  pokemon: PropTypes.object.isRequired,
+  asLink: PropTypes.bool.isRequired
 }

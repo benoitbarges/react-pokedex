@@ -4,12 +4,12 @@ import startersArtworks from '../utils/startersArtworks'
 
 export default function Generation({ gen, setSelectedGen, closeModal }) {
   const triggerClick = () => {
-    setSelectedGen()
+    setSelectedGen(gen)
     closeModal()
   }
 
   return (
-    <button onClick={triggerClick} className='gen-btn-lg'>
+    <button onClick={triggerClick} className='btn-lg'>
       {startersArtworks[gen].map(src => <img key={src} src={src} alt="starter artwork" className='artwork-mini'/>)}
       <p className='mt-2 mb-0 bold'>Generation {gen}</p>
     </button>

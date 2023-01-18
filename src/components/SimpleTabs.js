@@ -106,11 +106,11 @@ export default function SimpleTabs({ pokemon, gen }) {
                 ? <span>Genderless</span>
                 : <span className='flex'>
                     <div className='flex'>
-                      <img className='gender-logo' src="male.png" alt="male" />
+                      <img className='gender-logo' src="/male.png" alt="male" />
                       <p className='margin-auto mx-2'>{100 - pokemon.gender_rate * 12.5}%</p>
                     </div>
                     <div className='flex'>
-                      <img className='gender-logo' src="female.png" alt="female" />
+                      <img className='gender-logo' src="/female.png" alt="female" />
                        <p className='margin-auto mx-2'>{pokemon.gender_rate * 12.5}%</p>
                     </div>
                   </span>
@@ -140,7 +140,7 @@ export default function SimpleTabs({ pokemon, gen }) {
 
       <TabPanel value={value} index={1}>
         <h4 className='mb-4'>Base Stats</h4>
-        <PokemonStats stats={pokemon.stats}/>
+        <PokemonStats stats={pokemon.stats} />
       </TabPanel>
 
       <TabPanel value={value} index={2}>

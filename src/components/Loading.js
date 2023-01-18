@@ -6,7 +6,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '10%',
+    width: '100%',
+    marginTop: '2rem',
     '& > * + *': {
       marginLeft: theme.spacing(2),
     },

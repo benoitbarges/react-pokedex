@@ -4,13 +4,13 @@ import PropTypes from 'prop-types'
 
 export default function PokemonStats({ stats }) {
   const total = () => {
-    return stats.reduce((sum, stat) => sum += stat.base_stat, 0)
+    return stats.reduce((sum, stat) => sum += stat.value, 0)
   }
 
   const maxStat = (stat) => {
     return stat.name === "hp"
-      ? Number(stat.base_stat) * 2 + 204
-      : (Number(stat.base_stat) * 2 + 99) * 1.1
+      ? Number(stat.value) * 2 + 204
+      : (Number(stat.value) * 2 + 99) * 1.1
   }
 
   const maxTotal = () => {
@@ -26,7 +26,7 @@ export default function PokemonStats({ stats }) {
           <Stat
             key={stat.name}
             name={stat.name}
-            baseStat={stat.base_stat}
+            baseStat={stat.value}
             maxStat={maxStat(stat)}
           />
         ))}
