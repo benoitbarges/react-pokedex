@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# README
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## SETUP
 
-## Available Scripts
+Voici les informations pour initialiser le projet sur votre machine.
+Il s'agit d'une application React hydratée par un API Rails [vous trouverez ici](https://github.com/benoitbarges/kinoba-technical-test). La version 17 de React est utilisée, avec Node `16.13.1`
 
-In the project directory, you can run:
+Les différentes étapes sont les suivantes :
+1. Cloner le repository
+2. Fetcher et basculer sur la branche `kinoba-technical-test`
+3. Lancer en console `yarn install`
+4. Seeder et lancer l'API sur le port `3000`
+5. Lancer en console `yarn start` pour faire tourner un serveur local (port `3001`par défaut)
 
-### `yarn start`
+## Contexte
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Cette application a été conçue pour un test technique dont voici les principales fonctionnalités demandées :
+1. Mettre en place une API REST Rails
+2. Ajouter la possibilité de créer un compte, de se connecter et se déconnecter
+3. En tant qu’utilisateur connecté, je veux pouvoir ajouter/supprimer un pokémon à la liste
+de mes Pokémons capturés
+4. En tant qu’utilisateur connecté, je veux pouvoir filtrer la liste des pokémons par pokémons capturés / non-capturés / date de capture
+5. En tant que visiteur, je veux pouvoir voir la liste complète des pokémons de toutes les
+générations avec une pagination de 10 par 10 pokémons (scroll infini)
+6. En tant qu’utilisateur connecté, je veux pouvoir partager un lien public vers mon Pokédex
+pour consultation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Ce repository était déjà existant, le but de ce test était de rajouter des features, et de livrer les améliorations sous la forme d'une Pull Request.
 
-### `yarn test`
+## Login 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Vous devez d'abord effectuer un sign up pour vous connecter. Le backend va nous renvoyer un Json Web Token (JWT) ([explication de son fonctionnement sur le repo API](https://github.com/benoitbarges/kinoba-technical-test/blob/main/README.md#login)).
+Une fois récupérer, il faut utiliser ce token pour authentifier chaque requête envpyer au backend. J'ai décidé de le conserver dans le `localStorage` du browser par soucis de rapidité et simplicité, mais si cette application était vouée à être utilisée et déployée en production, j'opterais plutôt pour conserver le token dans les cookies du browser pour mieux se protéger des attaques (XSS & CSRF).
 
-### `yarn build`
+Pour gérer les différentes requêtes, j'ai utilisé la librairie `axios`. On peut utiliser des `interceptors`, que j'ai configuré dans le fichier `PrivateRoute.js`. Cela permet de mettre le token dans les headers de chacune des requêtes HTTP. On l'utilisera également pour gérer les erreurs `401` quand le token est expiré (paramétré sur 1 jour sur l'API) pour rediriger l'utilisateur sur le formulaire de sign in.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Au moment de la déconnexion, le token supprimé du `localStorage`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1) Lister
+La page principale est l'index des pokémons par génération. Pour la pagination et le scroll infini, j'ai utilisé la librairie `react-infinite-scroller`. Elle nous permet de gérer facilement les requêtes supplémentaires.
 
-### `yarn eject`
+2) Filtrer
+On peut filter par pokémons attrapés ou non, et par ordre de capture (du plus récent au plus ancien et inversement). La pagination est également présente lorsqu'on filtre, et les différents `state` sont gérer par le hook `useReducer` de React.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3) Marquer comme attrapé
+Pour cela il faut aller sur la show d'un pokemon `/pokemons/:id`. Une requête `POST` ou `DELETE` est envoyée au backend suivant si le pokemon est déjà marqué comme attrapé.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4) Partager son pokedex
+Sur l'index des pokemons, un boutton pour copier son lien est disponible, il se construit de la sorte `http://localhost:3001/pokedex/:trainerId`. La page de partage n'étant pas dans la layout privé, on peut donc y accéder sans être authentifié. Le layout privé est géré via React Router (V5).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
