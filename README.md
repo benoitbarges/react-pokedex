@@ -26,6 +26,7 @@ générations avec une pagination de 10 par 10 pokémons (scroll infini)
 pour consultation
 
 Ce repository était déjà existant, le but de ce test était de rajouter des features, et de livrer les améliorations sous la forme d'une Pull Request.
+Pour gagner du temps, je n'ai pas tout refactoriser, juste ce qui était nécessaire pour le test.
 
 ## Login 
 
