@@ -26,12 +26,12 @@ générations avec une pagination de 10 par 10 pokémons (scroll infini)
 pour consultation
 
 Ce repository était déjà existant, le but de ce test était de rajouter des features, et de livrer les améliorations sous la forme d'une Pull Request.
-Pour gagner du temps, je n'ai pas tout refactoriser, juste ce qui était nécessaire pour le test.
+Pour gagner du temps, je n'ai pas tout refactorisé, juste ce qui était nécessaire pour le test.
 
 ## Login 
 
 Vous devez d'abord effectuer un sign up pour vous connecter. Le backend va nous renvoyer un Json Web Token (JWT) ([explication de son fonctionnement sur le repo API](https://github.com/benoitbarges/kinoba-technical-test/blob/main/README.md#login)).
-Une fois récupérer, il faut utiliser ce token pour authentifier chaque requête envpyer au backend. J'ai décidé de le conserver dans le `localStorage` du browser par soucis de rapidité et simplicité, mais si cette application était vouée à être utilisée et déployée en production, j'opterais plutôt pour conserver le token dans les cookies du browser pour mieux se protéger des attaques (XSS & CSRF).
+Une fois récupéré, il faut utiliser ce token pour authentifier chaque requête envoyée au backend. J'ai décidé de le conserver dans le `localStorage` du browser par soucis de rapidité et simplicité, mais si cette application était vouée à être utilisée et déployée en production, j'opterais plutôt pour conserver le token dans les cookies du browser pour mieux se protéger des attaques (XSS & CSRF).
 
 Pour gérer les différentes requêtes, j'ai utilisé la librairie `axios`. On peut utiliser des `interceptors`, que j'ai configuré dans le fichier `PrivateRoute.js`. Cela permet de mettre le token dans les headers de chacune des requêtes HTTP. On l'utilisera également pour gérer les erreurs `401` quand le token est expiré (paramétré sur 1 jour sur l'API) pour rediriger l'utilisateur sur le formulaire de sign in.
 
